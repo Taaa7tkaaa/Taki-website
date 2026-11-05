@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAKI</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(
+        180deg,
+        #000000 0%,
+        #101010 25%,
+        #292929 58%,
+        #777777 100%
+    );
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 440px;
+    margin: auto;
+    padding: 55px 25px 45px;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+/* CROWN */
+
+.crown {
+    width: 82px;
+    height: 58px;
+    margin-bottom: -2px;
+
+    opacity: 0;
+    transform: translateY(30px) scale(1.3);
+
+    filter:
+        drop-shadow(0 5px 3px rgba(0,0,0,0.8))
+        drop-shadow(0 0 8px rgba(255,255,255,0.12));
+
+    animation: crownIntro 1.5s ease forwards;
+}
+
+.crown svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+@keyframes crownIntro {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(1.3);
+        filter: blur(10px);
+    }
+
+    65% {
+        opacity: 0.65;
+        filter: blur(1px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter:
+            drop-shadow(0 5px 3px rgba(0,0,0,0.8))
+            drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    }
+}
+
+/* TAKI 3D */
+
+h1 {
+    font-size: clamp(82px, 23vw, 100px);
+    font-weight: 900;
+    letter-spacing: 12px;
+    padding-left: 12px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #e5e5e5 22%,
+        #999999 48%,
+        #eeeeee 65%,
+        #555555 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.35),
+        0 2px 0 #999999,
+        0 3px 0 #777777,
+        0 4px 0 #555555,
+        0 6px 3px rgba(0,0,0,0.8),
+        0 12px 18px rgba(0,0,0,0.65);
+
+    opacity: 0;
+    animation: takiIntro 1.5s ease forwards;
+}
+
+@keyframes takiIntro {
+    0% {
+        opacity: 0;
+        transform: translateY(65px) scale(1.35);
+        filter: blur(12px);
+    }
+
+    65% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.header p {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    color: #c7c7c7;
+
+    opacity: 0;
+    animation: textAppear 1s ease 0.8s forwards;
+}
+
+@keyframes textAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* SOCIAL GRID */
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.social {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 27px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.45),
+        0 5px 0 rgba(0,0,0,0.3),
+        inset 0 2px 3px rgba(255,255,255,0.2),
+        inset 0 -5px 10px rgba(0,0,0,0.2);
+
+    opacity: 0;
+    transform: translateY(25px) scale(0.92);
+
+    animation: cardAppear 0.8s ease forwards;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.social:nth-child(1) { animation-delay: 0.7s; }
+.social:nth-child(2) { animation-delay: 0.85s; }
+.social:nth-child(3) { animation-delay: 1s; }
+.social:nth-child(4) { animation-delay: 1.15s; }
+
+@keyframes cardAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.social:active {
+    transform: scale(0.94);
+}
+
+/* LOGO GENERAL 3D */
+
+.social svg {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.social:active svg {
+    transform: scale(1.08) translateY(-2px);
+}
+
+/* TIKTOK */
+
+.tiktok {
+    background: linear-gradient(
+        145deg,
+        #292929,
+        #080808 60%,
+        #000000
+    );
+}
+
+.tiktok svg {
+    width: 72px;
+    height: 72px;
+
+    filter:
+        drop-shadow(3px 3px 0 #fe2c55)
+        drop-shadow(-3px -3px 0 #25f4ee)
+        drop-shadow(0 8px 5px rgba(0,0,0,0.8));
+}
+
+/* INSTAGRAM */
+
+.instagram {
+    background: linear-gradient(
+        145deg,
+        #833ab4 0%,
+        #c13584 45%,
+        #fd1d1d 75%,
+        #fcb045 100%
+    );
+}
+
+.instagram svg {
+    width: 76px;
+    height: 76px;
+
+    filter:
+        drop-shadow(0 2px 0 rgba(255,255,255,0.6))
+        drop-shadow(0 5px 2px rgba(0,0,0,0.35))
+        drop-shadow(0 10px 7px rgba(0,0,0,0.35));
+}
+
+/* FACEBOOK */
+
+.facebook {
+    background: linear-gradient(
+        145deg,
+        #1877f2,
+        #0752b5
+    );
+}
+
+.facebook svg {
+    width: 85px;
+    height: 85px;
+
+    filter:
+        drop-shadow(0 2px 0 rgba(255,255,255,0.3))
+        drop-shadow(0 5px 2px rgba(0,0,0,0.45))
+        drop-shadow(0 10px 7px rgba(0,0,0,0.35));
+}
+
+/* TELEGRAM */
+
+.telegram {
+    background: linear-gradient(
+        145deg,
+        #252525,
+        #000000
+    );
+}
+
+.telegram svg {
+    width: 76px;
+    height: 76px;
+
+    filter:
+        drop-shadow(0 2px 0 rgba(255,255,255,0.5))
+        drop-shadow(0 5px 3px rgba(0,0,0,0.8))
+        drop-shadow(0 10px 8px rgba(0,0,0,0.5));
+}
+
+/* LOGO ZOOM TRANSITION */
+
+#transitionScreen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+}
+
+#transitionScreen.active {
+    opacity: 1;
+}
+
+.zoomLogo {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+
+    transition:
+        left 0.65s cubic-bezier(.2,.8,.2,1),
+        top 0.65s cubic-bezier(.2,.8,.2,1),
+        width 0.65s cubic-bezier(.2,.8,.2,1),
+        height 0.65s cubic-bezier(.2,.8,.2,1),
+        transform 0.65s cubic-bezier(.2,.8,.2,1);
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .social-links {
+        gap: 14px;
+    }
+
+    .social {
+        border-radius: 22px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <!-- SILVER CROWN -->
+        <div class="crown">
+            <svg viewBox="0 0 100 70">
+                <defs>
+                    <linearGradient id="silverCrown"
+                        x1="0" y1="0" x2="0.8" y2="1">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="25%" stop-color="#d9d9d9"/>
+                        <stop offset="50%" stop-color="#777777"/>
+                        <stop offset="72%" stop-color="#eeeeee"/>
+                        <stop offset="100%" stop-color="#555555"/>
+                    </linearGradient>
+
+                    <linearGradient id="crownSide"
+                        x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#999999"/>
+                        <stop offset="100%" stop-color="#292929"/>
+                    </linearGradient>
+                </defs>
+
+                <path
+                    d="M10 20 L28 35 L42 8 L56 35 L76 12 L88 20 L80 57 L18 57 Z"
+                    fill="url(#silverCrown)"
+                    stroke="#eeeeee"
+                    stroke-width="1.5"/>
+
+                <path
+                    d="M18 57 L80 57 L77 65 L21 65 Z"
+                    fill="url(#crownSide)"
+                    stroke="#777777"
+                    stroke-width="1"/>
+
+                <path
+                    d="M10 20 L18 57 M88 20 L80 57"
+                    stroke="#ffffff"
+                    stroke-width="1.5"
+                    opacity="0.7"/>
+
+                <path
+                    d="M28 35 L42 8 L56 35"
+                    fill="none"
+                    stroke="#ffffff"
+                    stroke-width="1.5"
+                    opacity="0.6"/>
+
+                <circle cx="10" cy="18" r="4"
+                    fill="#ffffff"/>
+                <circle cx="42" cy="7" r="4"
+                    fill="#ffffff"/>
+                <circle cx="88" cy="18" r="4"
+                    fill="#ffffff"/>
+
+                <path
+                    d="M25 48 H73"
+                    stroke="#ffffff"
+                    stroke-width="2"
+                    opacity="0.55"/>
+            </svg>
+        </div>
+
+        <h1>TAKI</h1>
+
+        <p>Choose the social platform that suits you</p>
+
+    </header>
+
+    <div class="social-links">
+
+        <!-- TIKTOK -->
+        <a href="https://www.tiktok.com/@taki_abdelrahim?_r=1&_t=ZS-9B9yTK1dZav"
+           class="social tiktok"
+           aria-label="TikTok">
+
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14 3v11.5a4.5 4.5 0 1 1-4-4.47"
+                stroke="#ffffff" stroke-width="2.5"
+                stroke-linecap="round"/>
+                <path d="M14 3c.5 3.1 2.2 4.7 5 5"
+                stroke="#ffffff" stroke-width="2.5"
+                stroke-linecap="round"/>
+            </svg>
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a href="https://www.instagram.com/takiiabdelrahim?exln=MXUyM2hsZGM3cWNsMQ=="
+           class="social instagram"
+           aria-label="Instagram">
+
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="white" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1"
+                        fill="white" stroke="none"/>
+            </svg>
+        </a>
+
+        <!-- FACEBOOK -->
+        <a href="https://www.facebook.com/share/19kD54MhFT/"
+           class="social facebook"
+           aria-label="Facebook">
+
+            <svg viewBox="0 0 24 24">
+                <defs>
+                    <linearGradient id="facebookGradient"
+                        x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#000000"/>
+                        <stop offset="50%" stop-color="#777777"/>
+                        <stop offset="100%" stop-color="#ffffff"/>
+                    </linearGradient>
+                </defs>
+
+                <path fill="url(#facebookGradient)"
+                d="M13.5 21v-8h2.7l.4-3h-3.1V8.1
+                c0-.9.3-1.5 1.6-1.5h1.7V3.9
+                C16 3.8 15.1 3.7 14 3.7
+                c-2.7 0-4.5 1.6-4.5 4.6V10H7v3
+                h2.5v8z"/>
+            </svg>
+        </a>
+
+        <!-- TELEGRAM -->
+        <a href="https://t.me/Taki77taki"
+           class="social telegram"
+           aria-label="Telegram">
+
+            <svg viewBox="0 0 24 24">
+                <defs>
+                    <linearGradient id="telegramGradient"
+                        x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="50%" stop-color="#bdbdbd"/>
+                        <stop offset="100%" stop-color="#666666"/>
+                    </linearGradient>
+                </defs>
+
+                <path fill="url(#telegramGradient)"
+                d="M21.8 3.5 18.6 20c-.2 1.2-.9
+                1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.6.6
+                -1.1.6l.4-5.1 9.3-8.4c.4-.4-.1-.6
+                -.6-.3L6 13.5l-4.9-1.5c-1.1-.3-1.1
+                -1.1.2-1.6L20.4 2c.9-.3 1.7.2
+                1.4 1.5z"/>
+            </svg>
+        </a>
+
+    </div>
+
+</div>
+
+<div id="transitionScreen"></div>
+
+<script>
+const socialLinks = document.querySelectorAll(".social");
+
+socialLinks.forEach(link => {
+
+    link.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        const destination = this.href;
+        const originalLogo = this.querySelector("svg");
+
+        const rect = originalLogo.getBoundingClientRect();
+
+        const clone = originalLogo.cloneNode(true);
+        clone.classList.add("zoomLogo");
+
+        clone.style.left = rect.left + "px";
+        clone.style.top = rect.top + "px";
+        clone.style.width = rect.width + "px";
+        clone.style.height = rect.height + "px";
+
+        document.body.appendChild(clone);
+
+        const screen = document.getElementById("transitionScreen");
+        screen.classList.add("active");
+
+        requestAnimationFrame(() => {
+
+            clone.style.left = "50%";
+            clone.style.top = "50%";
+            clone.style.width = "100vmax";
+            clone.style.height = "100vmax";
+            clone.style.transform =
+                "translate(-50%, -50%) scale(1.5)";
+
+        });
+
+        setTimeout(() => {
+            window.location.href = destination;
+        }, 700);
+
+    });
+
+});
+</script>
+
+</body>
+</html>
+
